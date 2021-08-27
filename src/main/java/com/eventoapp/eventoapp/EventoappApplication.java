@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-@EntityScan(basePackages = {"co.eventoapp.models"})
+@EntityScan(basePackages = {"com.eventoapp.models"})
 @SpringBootApplication
 @EnableAutoConfiguration
 public class EventoappApplication {
