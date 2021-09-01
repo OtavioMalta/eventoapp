@@ -7,6 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity //uma entidade é uma tabela em um BD, cada instância da entidade corresponde a uma linha dessa tabela.
 @Table(name = "Evento")
 public class Evento implements Serializable{ //Interface Serialzable
@@ -22,34 +27,4 @@ public class Evento implements Serializable{ //Interface Serialzable
     private String local;
     private String horario;
     
-    public long id(){
-        return id;
-    }
-    public void setId(long id){
-        this.id = id;
-    }
-    public String getNome() {
-        return nome;
-    }
-    public String getHorario() {
-        return horario;
-    }
-    public void setHorario(String horario) {
-        this.horario = horario;
-    }
-    public String getLocal() {
-        return local;
-    }
-    public void setLocal(String local) {
-        this.local = local;
-    }
-    public String getData() {
-        return data;
-    }
-    public void setData(String data) {
-        this.data = data;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 }
