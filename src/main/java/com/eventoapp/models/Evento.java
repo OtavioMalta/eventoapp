@@ -1,10 +1,13 @@
 package com.eventoapp.models;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -26,5 +29,8 @@ public class Evento implements Serializable{ //Interface Serialzable
     private String data;
     private String local;
     private String horario;
+
+    @OneToMany // Um evento para vários convidados
+    private List<Convidado> convidados;
     
 }
