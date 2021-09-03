@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import javax.validation.constraints.NotEmpty;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,9 +27,16 @@ public class Evento implements Serializable{ //Interface Serialzable
     @GeneratedValue(strategy = GenerationType.AUTO) //Gera automaticamente um ID
     private long id;
 
+    @NotEmpty
     private String nome;
+
+    @NotEmpty
     private String data;
+
+    @NotEmpty
     private String local;
+
+    @NotEmpty
     private String horario;
 
     @OneToMany // Um evento para vários convidados

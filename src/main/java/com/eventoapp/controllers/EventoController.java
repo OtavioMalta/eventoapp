@@ -6,11 +6,16 @@ import com.eventoapp.repository.ConvidadoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+
+import javax.validation.Valid;
 
 import com.eventoapp.models.Convidado;
 import com.eventoapp.models.Evento;
@@ -34,11 +39,14 @@ public class EventoController {
     //@RequestMapping(value="/cadastrarEvento", method=RequestMethod.POST)
     //          OU
     @PostMapping("/cadastrarEvento") // Método para cadastrar um eventos
-    public String form(Evento evento){
-
+    public String form(Evento evento, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+            return "redirect:/cadastrarEvento";
+        }
         // Salva o evento 
         er.save(evento); 
-
+        attributes.addFlashAttribute("mensagem", "Dados salvos com sucesso!");
         // Retorna a página zerada para um novo cadastro
         return "redirect:/cadastrarEvento";
     }
@@ -72,11 +80,20 @@ public class EventoController {
     }
 
     @PostMapping("/{id}")
-    public String detalhesEventoPost(@PathVariable("id") long id, Convidado convidado){
-		Evento evento = er.findById(id);
-        convidado.setEvento(evento);
-		cr.save(convidado);
+    public String detalhesEventoPost(@PathVariable("id") long id, @Valid Convidado convidado, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){ // Se houver erros (EX: Rg em branco)
+            attributes.addFlashAttribute("mensagem", "Verifique os campos!");// Método que redireciona uma mensagem para o usuário
+            return "redirect:/{id}";
+        
+        }else{
+            Evento evento = er.findById(id);
+            convidado.setEvento(evento); // Diz que este convidado esta relacionado a lista de convidado deste evento
+		    cr.save(convidado); // Salva convidado no repositorio CR
+            attributes.addFlashAttribute("mensagem", "Dados salvos com sucesso!");
 
-        return "redirect:/{id}";
+            return "redirect:/{id}";
+        }
+
+		
     }
 }

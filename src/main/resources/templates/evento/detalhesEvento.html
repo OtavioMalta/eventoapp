@@ -21,15 +21,17 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <div th:each="evento : ${evento}" class="container detalhesEvento">
         <h5>Detalhes do Evento</h5>
             <div class="row">
-                <p>Nome: <span th:text = "${evento.nome}"></span></p>
-                <p>Local: <span th:text = "${evento.local}"></span> </p>
-                <p>Data: <span th:text = "${evento.data}"></span> </p>
-                <p>Horario: <span th:text = "${evento.horario}"></span> </p>
+                <p></p>Nome: <span th:text = "${evento.nome}"></span></p>
+                <p></p>Local: <span th:text = "${evento.local}"></span> </p>
+                <p></p>Data: <span th:text = "${evento.data}"></span> </p>
+                <p></p>Horario: <span th:text = "${evento.horario}"></span> </p>
             </div>
             
+            <th:block th:include="mensagemValidacao"></th:block>
+            
             <form method="POST">
-                <p>Nome: <input type="text" value="" name="nomeConvidado"></p>
-                <p>RG: <input type="text" value="" name="rg"></p>
+                <p></p>Insira o Nome: <input type="text" value="" name="nomeConvidado" placeholder="Nome Completo"></p>
+                <p></p>Insira o RG: <input type="text" value="" name="rg" placeholder="AA-00.000.000" class="validate"></p>
                 <button type="submit" class="waves-effect waves-light btn">Adicionar</button>
             </form>
     </div>
@@ -38,11 +40,11 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <div class="container" th:each="convidado : ${convidados}">
         <div class="row">
             <div class="input-field col s6">
-                <p><span th:text="${convidado.nomeConvidado}"></span></p>
+                <p></p><span th:text="${convidado.nomeConvidado}"></span></p>
             </div>
 
             <div class="input-field col s3">
-                <p><span th:text="${convidado.rg}"></span></p>
+                <p></p><span th:text="${convidado.rg}"></span></p>
             </div>
         </div>
     </div>
