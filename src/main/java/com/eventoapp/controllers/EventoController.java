@@ -39,16 +39,15 @@ public class EventoController {
     //@RequestMapping(value="/cadastrarEvento", method=RequestMethod.POST)
     //          OU
     @PostMapping("/cadastrarEvento") // Método para cadastrar um eventos
-    public String form(Evento evento, BindingResult result, RedirectAttributes attributes){
-        if(result.hasErrors()){
-            attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+    public String form(@Valid Evento evento, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){ // Se houver erros (EX: Rg em branco)
+            attributes.addFlashAttribute("mensagem", "Verifique os campos!");// Método que redireciona uma mensagem para o usuário
+            return "redirect:/cadastrarEvento";
+        }else{
+            er.save(evento); // Salva convidado no repositorio CR
+            attributes.addFlashAttribute("mensagem", "Dados salvos com sucesso!");
             return "redirect:/cadastrarEvento";
         }
-        // Salva o evento 
-        er.save(evento); 
-        attributes.addFlashAttribute("mensagem", "Dados salvos com sucesso!");
-        // Retorna a página zerada para um novo cadastro
-        return "redirect:/cadastrarEvento";
     }
 
     @RequestMapping("/eventos") // Método para retornar a lista de eventos
@@ -79,6 +78,15 @@ public class EventoController {
         return mv;
     }
 
+    @RequestMapping("/deletarEvento")
+    public String deletarEvento(long id){
+        Evento evento = er.findById(id);
+        Iterable<Convidado> convidados= cr.findByEvento(evento);
+        cr.deleteAll(convidados);
+        er.delete(evento);
+        return "redirect:/eventos";
+    }
+
     @PostMapping("/{id}")
     public String detalhesEventoPost(@PathVariable("id") long id, @Valid Convidado convidado, BindingResult result, RedirectAttributes attributes){
         if(result.hasErrors()){ // Se houver erros (EX: Rg em branco)
@@ -93,7 +101,16 @@ public class EventoController {
 
             return "redirect:/{id}";
         }
+    }
 
-		
+    @RequestMapping("/deletarConvidado")
+	public String deletarConvidado(String rg){
+        Convidado convidado = cr.findByRg(rg);
+        cr.delete(convidado);
+
+        Evento evento = convidado.getEvento();
+        long idLong = evento.getId();
+        String id = "" + idLong;
+        return "redirect:/" + id;
     }
 }

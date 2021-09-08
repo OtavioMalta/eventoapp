@@ -5,51 +5,75 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <!--Gera páginas HTML no lado servidor de forma dinâmica, permitindo a troca de informações entre o código Java e as página HTML-->
 <head>
     <title>EventosApp</title>
+    <link rel="stylesheet" href="style/stylesheet.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 </head>
 
 
 <body>
-    <h2>Evento: </h2>
-    <a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle</i>Lista de Eventos</a>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo">&nbsp&nbspEvento: </a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">dehaze</i>Lista de Eventos</a></li>
+              </ul>
+            </div>
+          </nav>
+    </header>
+
 
     <div th:each="evento : ${evento}" class="container detalhesEvento">
-        <h5>Detalhes do Evento</h5>
-            <div class="row">
-                <p></p>Nome: <span th:text = "${evento.nome}"></span></p>
-                <p></p>Local: <span th:text = "${evento.local}"></span> </p>
-                <p></p>Data: <span th:text = "${evento.data}"></span> </p>
-                <p></p>Horario: <span th:text = "${evento.horario}"></span> </p>
+            <div class="detalhes">
+                <h5>Detalhes do Evento</h5>
+                <div class="row">
+                    <p></p>Nome: <span th:text = "${evento.nome}"></span></p>
+                    <p></p>Local: <span th:text = "${evento.local}"></span> </p>
+                    <p></p>Data: <span th:text = "${evento.data}"></span> </p>
+                    <p></p>Horario: <span th:text = "${evento.horario}"></span> </p>
+                </div>
             </div>
             
-            <th:block th:include="mensagemValidacao"></th:block>
+            
             
             <form method="POST">
                 <p></p>Insira o Nome: <input type="text" value="" name="nomeConvidado" placeholder="Nome Completo"></p>
                 <p></p>Insira o RG: <input type="text" value="" name="rg" placeholder="AA-00.000.000" class="validate"></p>
-                <button type="submit" class="waves-effect waves-light btn">Adicionar</button>
+                <div class="salvar">
+                    <button class="waves-effect waves-light btn" type="submit">Salvar</button>
+                    <th:block th:include="mensagemValidacao"></th:block>
+                </div>
             </form>
     </div>
 
-    <h5>Lista de Convidados: </h5>
-    <div class="container" th:each="convidado : ${convidados}">
-        <div class="row">
-            <div class="input-field col s6">
-                <p></p><span th:text="${convidado.nomeConvidado}"></span></p>
-            </div>
-
-            <div class="input-field col s3">
-                <p></p><span th:text="${convidado.rg}"></span></p>
-            </div>
-        </div>
-    </div>
     
-
+    <table class="container">
+        <thead>
+            <tr>
+                <th>Nome Convidado: </th>
+                <th>RG: </th>
+                <th>Deletar: </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="convidado : ${convidados}">
+                <td>
+                    <span th:text="${convidado.nomeConvidado}"></span>
+                </td>
+                <td>
+                    <span th:text="${convidado.rg}"></span>
+                </td>
+                <td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.rg)).build()}"><i class="material-icons left">delete</i></a></td>
+            </tr>
+        </tbody>
+    </table>
+    
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </body>
 </html>
