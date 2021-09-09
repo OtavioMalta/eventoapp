@@ -27,7 +27,7 @@ public class Evento implements Serializable{ //Interface Serialzable
     @GeneratedValue(strategy = GenerationType.AUTO) //Gera automaticamente um ID
     private long id;
 
-    @NotEmpty
+    @NotEmpty // Não pode ser vazio - Se for retorna um erro para o Controller (hasErrors())
     private String nome;
 
     @NotEmpty

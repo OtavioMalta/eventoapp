@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Convidado {
     
     @Id
-    @NotEmpty
+    @NotEmpty // Não pode ser vazio - Se for retorna um erro para o Controller (hasErrors())
     private String rg;
 
     @NotEmpty

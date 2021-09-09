@@ -78,18 +78,19 @@ public class EventoController {
         return mv;
     }
 
+    // Foi preciso deletar todos os convidados antes de deletar o evento
     @RequestMapping("/deletarEvento")
     public String deletarEvento(long id){
-        Evento evento = er.findById(id);
-        Iterable<Convidado> convidados= cr.findByEvento(evento);
-        cr.deleteAll(convidados);
-        er.delete(evento);
+        Evento evento = er.findById(id); // Busca o evento
+        Iterable<Convidado> convidados= cr.findByEvento(evento); // Busca os convidados do evento
+        cr.deleteAll(convidados); // Deleta todos os convidados
+        er.delete(evento); // Deleta o evento
         return "redirect:/eventos";
     }
 
     @PostMapping("/{id}")
     public String detalhesEventoPost(@PathVariable("id") long id, @Valid Convidado convidado, BindingResult result, RedirectAttributes attributes){
-        if(result.hasErrors()){ // Se houver erros (EX: Rg em branco)
+        if(result.hasErrors()){ // Se houver erros (EX: Rg vazio)
             attributes.addFlashAttribute("mensagem", "Verifique os campos!");// Método que redireciona uma mensagem para o usuário
             return "redirect:/{id}";
         
@@ -105,12 +106,13 @@ public class EventoController {
 
     @RequestMapping("/deletarConvidado")
 	public String deletarConvidado(String rg){
-        Convidado convidado = cr.findByRg(rg);
-        cr.delete(convidado);
+        Convidado convidado = cr.findByRg(rg); // Busca o convidado
+        cr.delete(convidado); // Deleta o convidado
 
-        Evento evento = convidado.getEvento();
-        long idLong = evento.getId();
-        String id = "" + idLong;
+        // RETORNAR A LISTA DE CONVIDADOS ATUALIZADA
+        Evento evento = convidado.getEvento(); // Pega o evento que esse convidado pertence
+        long idLong = evento.getId(); // Pega o id
+        String id = "" + idLong; // Transforma o idLong em String
         return "redirect:/" + id;
     }
 }
