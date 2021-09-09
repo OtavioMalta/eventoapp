@@ -96,7 +96,7 @@ public class EventoController {
         
         }else{
             Evento evento = er.findById(id);
-            convidado.setEvento(evento); // Diz que este convidado esta relacionado a lista de convidado deste evento
+            convidado.setEvento(evento); // Diz que este convidado esta relacionado a lista de convidados deste evento
 		    cr.save(convidado); // Salva convidado no repositorio CR
             attributes.addFlashAttribute("mensagem", "Dados salvos com sucesso!");
 
