@@ -5,11 +5,10 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <!--Gera páginas HTML no lado servidor de forma dinâmica, permitindo a troca de informações entre o código Java e as página HTML-->
 <head>
     <title>EventosApp</title>
-    <!--<link rel="stylesheet" href="style/stylesheet.css">-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-
+    <link rel="shortcut icon" href="#" />
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -22,7 +21,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
             <div class="nav-wrapper">
               <a href="#" class="brand-logo">&nbsp&nbspEvento: </a>
               <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">dehaze</i>Lista de Eventos</a></li>
+                <li><a href="/eventos" class="waves-effect waves-light btn">Lista de Eventos</a></li>
               </ul>
             </div>
           </nav>
@@ -69,7 +68,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
                 <td>
                     <span th:text="${convidado.rg}"></span>
                 </td>
-                <td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.rg)).build()}"><i class="material-icons left">delete</i></a></td>
+                <td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.rg)).build()}"></a></td>
             </tr>
         </tbody>
     </table>

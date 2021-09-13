@@ -5,11 +5,10 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <!--Gera páginas HTML no lado servidor de forma dinâmica, permitindo a troca de informações entre o código Java e as página HTML-->
 <head>
     <title>EventosApp</title>
-    <!--<link rel="stylesheet" href="/stylesheet.css">-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-
+    <link rel="shortcut icon" href="#" />
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -21,7 +20,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
             <div class="nav-wrapper">
               <a href="#" class="brand-logo">&nbsp&nbspLista de Eventos: </a>
               <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/cadastrarEvento" class="waves-effect waves-light btn"><i class="material-icons left">add_circle</i>Cadastrar Evento</a></li>
+                <li><a href="/cadastrarEvento" class="waves-effect waves-light btn">Cadastrar Evento</a></li>
               </ul>
             </div>
           </nav>
@@ -44,7 +43,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
                 <td><a href=""><span th:text="${evento.local}"></span></a></td>
                 <td><a href=""><span th:text="${evento.data}"></span></a></td>
                 <td><a href=""><span th:text="${evento.horario}"></span></a></td>
-                <td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('EC#deletarEvento').arg(0, evento.id)).build()}"><i class="material-icons left">delete</i></a></td>
+                <td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('EC#deletarEvento').arg(0, evento.id)).build()}"></a></td>
                     
             </tr>
         </tbody>
