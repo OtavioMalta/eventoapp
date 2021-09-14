@@ -20,12 +20,12 @@ public class Role implements GrantedAuthority{
     @Id
     private String nomeRole;
 
-    @ManyToMany // Várias funções para vários usuários
+    // Cria a relação entre Role e Usuário
+    @ManyToMany(mappedBy = "roles") // Várias funções para vários usuários
     private List<Usuario> usuarios;
 
     @Override
-    public String getAuthority() {
-        // TODO Auto-generated method stub
+    public String getAuthority() { // Método da interface GrantedAuthority
         return this.nomeRole;
     }
     
