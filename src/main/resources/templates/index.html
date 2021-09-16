@@ -20,7 +20,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
             <div class="nav-wrapper">
               <a href="#" class="brand-logo">&nbsp&nbspLista de Eventos: </a>
               <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/cadastrarEvento" class="waves-effect waves-light btn">Cadastrar Evento</a></li>
+                <li><a href="/cadastrarEvento" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>   Cadastrar Evento</a></li>
               </ul>
             </div>
           </nav>
@@ -39,7 +39,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
         </thead>
         <tbody>
             <tr th:each="evento : ${eventos}"> <!--Para cara evento, será pego do objeto que será mandado para a View eventos-->
-                <td><a th:href="${(#mvc.url('EC#detalhesEvento').arg(0, evento.id)).build()}"><span th:text="${evento.nome}"></span></a></td>
+                <td><a th:href="${(#mvc.url('EC#detalhesEvento').arg(0, evento.id)).build()}"><i class="material-icons left">delete</i><span th:text="${evento.nome}"></span></a></td>
                 <td><a href=""><span th:text="${evento.local}"></span></a></td>
                 <td><a href=""><span th:text="${evento.data}"></span></a></td>
                 <td><a href=""><span th:text="${evento.horario}"></span></a></td>
