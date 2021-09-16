@@ -12,7 +12,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 // Configurações do Posgress (Heroku)
 @Configuration
-@Profile("prod")
 public class DataConfiguration {
 
     @Bean
