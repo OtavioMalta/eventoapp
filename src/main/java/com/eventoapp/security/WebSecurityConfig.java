@@ -1,4 +1,4 @@
-package com.eventoapp.security;
+/*package com.eventoapp.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         auth.inMemoryAuthentication()
         .withUser("otavio").password("{noop}123").roles("ADMIN");
     }*/
-            
+ /*           
     @Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 		auth.userDetailsService(userDetailsService)
@@ -54,3 +54,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		web.ignoring().antMatchers("/materialize/**", "/style/**");
 	}
 }
+*/
