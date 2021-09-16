@@ -24,6 +24,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET, "/").permitAll()
 		.antMatchers(HttpMethod.GET, "/cadastrarEvento").hasRole("ADMIN")
 		.antMatchers(HttpMethod.POST, "/cadastrarEvento").hasRole("ADMIN")
+		.antMatchers(HttpMethod.POST, "/deletarEvento").hasRole("ADMIN")
+		.antMatchers(HttpMethod.POST, "/deletarConvidado").hasRole("ADMIN")
+		.antMatchers(HttpMethod.POST, "/cadastrarConvidado").hasRole("ADMIN")
+		.antMatchers(HttpMethod.POST, "/{id}").hasRole("ADMIN")
+		.antMatchers(HttpMethod.GET,"/deletarEvento").hasRole("ADMIN")
+		.antMatchers(HttpMethod.GET,"/deletarConvidado").hasRole("ADMIN")
+		.antMatchers(HttpMethod.GET, "/cadastrarConvidado").hasRole("ADMIN")
+
 		.anyRequest().authenticated()
 		.and().formLogin().permitAll()
 		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));

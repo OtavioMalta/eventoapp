@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
-@ComponentScan(basePackages = {"com.eventoapp.controllers"}) // Versões mais recentes precisam dessa tag para mostra ao main onde procurar certas Beans
+@ComponentScan(basePackages = {"com.eventoapp"}) // Versões mais recentes precisam dessa tag para mostra ao main onde procurar certas Beans
 public class EventoappApplication {
 
 	public static void main(String[] args) {
