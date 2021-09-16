@@ -30,6 +30,7 @@ public class DataConfiguration {
         return basicDataSource;
     }
 
+    @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setShowSql(true);
