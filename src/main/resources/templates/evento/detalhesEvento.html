@@ -42,8 +42,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
             
             
             <form method="POST">
-                <p></p>Insira o Nome: <input type="text" value="" name="nomeConvidado" placeholder="Nome Completo"></p>
-                <p></p>Insira o RG: <input type="text" value="" name="rg" placeholder="AA-00.000.000" class="validate"></p>
+                <p>Insira o Nome: </p><input type="text" value="" name="nomeConvidado" placeholder="Nome Completo"></p>
+                <p>Insira o RG: </p><input type="text" value="" name="rg" placeholder="AA-00.000.000" class="validate"></p>
                 <div class="salvar">
                     <button class="waves-effect waves-light btn" type="submit">Salvar</button>
                     <th:block th:include="mensagemValidacao"></th:block>
